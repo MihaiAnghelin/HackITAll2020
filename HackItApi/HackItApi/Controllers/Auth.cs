@@ -34,7 +34,7 @@ namespace HackItApi.Controllers
             {
                 return BadRequest(new
                 {
-                    Response = "Email or password is incorrect"
+                    message = "Email or password is incorrect"
                 });
             }
 

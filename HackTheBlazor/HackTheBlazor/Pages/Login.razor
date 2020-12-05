@@ -30,6 +30,8 @@
                     }
                     Login
                 </button>
+
+                @returnURL
                 @if (!string.IsNullOrEmpty(error))
                 {
                     <div class="alert alert-danger mt-3 mb-0">@error</div>
@@ -43,6 +45,8 @@
     private Model model = new Model();
     private bool loading;
     private string error;
+
+    private string returnURL = "";
 
     protected override void OnInitialized()
     {
@@ -60,6 +64,7 @@
         {
             await AuthenticationService.Login(model.Username, model.Password);
             var returnUrl = NavigationManager.QueryString("returnUrl") ?? "/";
+            returnURL = returnUrl;
             NavigationManager.NavigateTo(returnUrl);
         }
         catch (Exception ex)
