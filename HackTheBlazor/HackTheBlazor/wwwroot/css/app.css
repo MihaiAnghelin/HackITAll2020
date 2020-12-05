@@ -1,4 +1,4 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -50,7 +50,10 @@ a, .btn-link {
 	}
 
 .signin {
-	border: 3px, solid #f1f1f1;
+    border: 3px, solid #f1f1f1;
+    max-width: 50%;
+    align :center;
+    margin: auto;
 }
 
 .signininput {
@@ -127,6 +130,10 @@ img.avatar {
 span.psw {
 	float: right;
 	padding-top: 16px;
+}
+
+#cancelbtn {
+    color: white:
 }
 
 @media screen and (max-width: 300px) {
