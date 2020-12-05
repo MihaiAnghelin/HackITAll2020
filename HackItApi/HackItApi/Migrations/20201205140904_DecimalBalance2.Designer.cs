@@ -3,14 +3,16 @@ using System;
 using HackItApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HackItApi.Migrations
 {
     [DbContext(typeof(HackContext))]
-    partial class HackContextModelSnapshot : ModelSnapshot
+    [Migration("20201205140904_DecimalBalance2")]
+    partial class DecimalBalance2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
