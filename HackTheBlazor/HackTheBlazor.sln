@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackTheBlazor", "HackTheBlazor\HackTheBlazor.csproj", "{D6827357-D956-45F5-BD46-C74E953E2479}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LineChart", "Blazor-Charts\LineChart\LineChart.csproj", "{515E26BE-9195-41A2-AA08-D6AE35A280A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DonutChart", "Blazor-Charts\DonutChart\DonutChart.csproj", "{4DDECA05-96AC-4082-976F-E57A7E404C22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D6827357-D956-45F5-BD46-C74E953E2479}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6827357-D956-45F5-BD46-C74E953E2479}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6827357-D956-45F5-BD46-C74E953E2479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515E26BE-9195-41A2-AA08-D6AE35A280A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515E26BE-9195-41A2-AA08-D6AE35A280A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515E26BE-9195-41A2-AA08-D6AE35A280A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515E26BE-9195-41A2-AA08-D6AE35A280A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DDECA05-96AC-4082-976F-E57A7E404C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DDECA05-96AC-4082-976F-E57A7E404C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DDECA05-96AC-4082-976F-E57A7E404C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DDECA05-96AC-4082-976F-E57A7E404C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

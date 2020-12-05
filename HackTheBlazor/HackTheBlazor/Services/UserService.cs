@@ -4,23 +4,37 @@ using System.Threading.Tasks;
 
 namespace HackTheBlazor.Services
 {
-    public interface IUserService
-    {
-        Task<IEnumerable<User>> GetAll();
-    }
+	public interface IGlobalService
+	{
+		Task<IEnumerable<User>> GetAll();
 
-    public class UserService : IUserService
-    {
-        private IHttpService _httpService;
+		Task<dynamic> LoadSymbolGraph(string symbol);
+	}
 
-        public UserService(IHttpService httpService)
-        {
-            _httpService = httpService;
-        }
+	public class GlobalService : IGlobalService
+	{
+		private IHttpService _httpService;
 
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            return await _httpService.Get<IEnumerable<User>>("/api/dashboard");
-        }
-    }
+		public GlobalService(IHttpService httpService)
+		{
+			_httpService = httpService;
+		}
+
+		public async Task<IEnumerable<User>> GetAll()
+		{
+			return await _httpService.Get<IEnumerable<User>>("/api/dashboard");
+		}
+
+		public async Task<dynamic> LoadSymbolGraph(string symbol)
+		{
+			//todo 
+
+			return await _httpService.Get<dynamic>(
+				"$https://www.alphavantage.co/query?" +
+				$"function=TIME_SERIES_INTRADAY&symbol=SNE&interval=5min" +
+				$"&apikey=OLC6HWQVYQUI449V"
+				);
+
+		}
+	}
 }

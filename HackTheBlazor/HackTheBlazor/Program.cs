@@ -18,7 +18,7 @@ namespace HackTheBlazor
 
             builder.Services
                 .AddScoped<IAuthenticationService, AuthenticationService>()
-                .AddScoped<IUserService, UserService>()
+                .AddScoped<IGlobalService, GlobalService>()
                 .AddScoped<IHttpService, HttpService>()
                 .AddScoped<ILocalStorageService, LocalStorageService>();
 
