@@ -1,183 +1,211 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 a, .btn-link {
-    color: #0366d6;
+	color: #0366d6;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+	color: #fff;
+	background-color: #1b6ec2;
+	border-color: #1861ac;
 }
 
 .content {
-    padding-top: 1.1rem;
+	padding-top: 1.1rem;
 }
 
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+	outline: 1px solid #26b050;
 }
 
 .invalid {
-    outline: 1px solid red;
+	outline: 1px solid red;
 }
 
 .validation-message {
-    color: red;
+	color: red;
 }
 
 #blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+	background: lightyellow;
+	bottom: 0;
+	box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+	display: none;
+	left: 0;
+	padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+	#blazor-error-ui .dismiss {
+		cursor: pointer;
+		position: absolute;
+		right: 0.75rem;
+		top: 0.5rem;
+	}
 
 .signin {
-    border: 3px, solid #f1f1f1;
+	border: 3px, solid #f1f1f1;
 }
 
 .signininput {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
 }
 
 .signinbutton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
 }
 
 .signinbutton:hover {
-    opacity: 0.8;
+	opacity: 0.8;
+}
+
+.buyButton {
+	background-color: green;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 40%;
+}
+
+.buyButton:hover {
+	opacity: 0.8;
+}
+
+.sellButton {
+	background-color: darkred;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 40%;
+}
+
+.sellButton:hover {
+	opacity: 0.8;
 }
 
 .cancelbutton {
-    width: auto;
-    padding: 10px 18px;
-    background-color: red;
+	width: auto;
+	padding: 10px 18px;
+	background-color: red;
 }
 
 .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
+	text-align: center;
+	margin: 24px 0 12px 0;
 }
 
 img.avatar {
-    width: 20%;
-    border-radius: 50%;
+	width: 20%;
+	border-radius: 50%;
 }
 
 .signincontainer {
-    padding: 16px;
+	padding: 16px;
 }
 
 span.psw {
-    float: right;
-    padding-top: 16px;
+	float: right;
+	padding-top: 16px;
 }
 
 @media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
+	span.psw {
+		display: block;
+		float: none;
+	}
 
-    .cancelbtn {
-        width: 100%;
-    }
+	.cancelbtn {
+		width: 100%;
+	}
 }
 
 #cancelbtn {
-    background-color: red;
-    width: auto;
-    padding: 10px 18px;
+	background-color: red;
+	width: auto;
+	padding: 10px 18px;
 }
 
 #blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+	background: lightyellow;
+	bottom: 0;
+	box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+	display: none;
+	left: 0;
+	padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+	#blazor-error-ui .dismiss {
+		cursor: pointer;
+		position: absolute;
+		right: 0.75rem;
+		top: 0.5rem;
+	}
 
 /* 
-    below styles were copied from bootstrap 4.5.0 and renamed to be compatible with blazor
-    - '.validation-message' == bootstrap '.invalid-feedback'
-    - '.invalid' == bootstrap '.is-invalid'
+	below styles were copied from bootstrap 4.5.0 and renamed to be compatible with blazor
+	- '.validation-message' == bootstrap '.invalid-feedback'
+	- '.invalid' == bootstrap '.is-invalid'
 */
 
 .validation-message {
-    display: none;
-    width: 100%;
-    margin-top: 0.25rem;
-    font-size: 80%;
-    color: #dc3545;
+	display: none;
+	width: 100%;
+	margin-top: 0.25rem;
+	font-size: 80%;
+	color: #dc3545;
 }
 
 .invalid ~ .validation-message {
-    display: block;
+	display: block;
 }
 
 .form-control.invalid {
-    border-color: #dc3545;
-    padding-right: calc(1.5em + 0.75rem);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right calc(0.375em + 0.1875rem) center;
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+	border-color: #dc3545;
+	padding-right: calc(1.5em + 0.75rem);
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right calc(0.375em + 0.1875rem) center;
+	background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
-    .form-control.invalid:focus {
-        border-color: #dc3545;
-        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-    }
+	.form-control.invalid:focus {
+		border-color: #dc3545;
+		box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+	}
 
 textarea.form-control.invalid {
-    padding-right: calc(1.5em + 0.75rem);
-    background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+	padding-right: calc(1.5em + 0.75rem);
+	background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
 }
 
 .form-check-input.invalid ~ .form-check-label {
-    color: #dc3545;
+	color: #dc3545;
 }
 
 .form-check-input.invalid ~ .validation-message {
-    display: block;
+	display: block;
 }
