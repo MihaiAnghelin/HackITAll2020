@@ -1,0 +1,90 @@
+﻿@page "/register"
+@using System.ComponentModel.DataAnnotations
+@inject IGlobalService GlobalService
+@inject NavigationManager NavigationManager
+
+
+<h3>Register</h3>
+
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+        Username: test@test.com<br />
+        Password: Test10!
+    </div>
+    <div class="card">
+        <h4 class="card-header">Blazor WebAssembly JWT Login Example</h4>
+        <div class="card-body">
+            <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label>First Name</label>
+                    <InputText @bind-Value="model.FirstName" class="form-control" />
+                    <ValidationMessage For="@(() => model.FirstName)" />
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <InputText @bind-Value="model.LastName" class="form-control" />
+                    <ValidationMessage For="@(() => model.LastName)" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <InputText @bind-Value="model.Email" class="form-control" />
+                    <ValidationMessage For="@(() => model.Email)" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <InputText @bind-Value="model.Password" type="password" class="form-control" />
+                    <ValidationMessage For="@(() => model.Password)" />
+                </div>
+                <button class="btn btn-primary">
+                    @if (loading)
+                    {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                    Login
+                </button>
+                @*@if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger mt-3 mb-0">@error</div>
+                }*@
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Model model = new Model();
+    private bool loading;
+    //private string error;
+
+    private async void HandleValidSubmit()
+    {
+        loading = true;
+        try
+        {
+            await GlobalService.Register(model.Email, model.Password, model.FirstName, model.LastName);
+            NavigationManager.NavigateTo("/login", true);
+        }
+        catch (Exception ex)
+        {
+            //error = ex.Message;
+            loading = false;
+            StateHasChanged();
+        }
+    }
+
+
+    private class Model
+    {
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required] public string LastName { get; set; }
+    }
+}
