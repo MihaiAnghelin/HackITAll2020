@@ -64,7 +64,11 @@ namespace HackItApi.Controllers
             return Ok(new
             {
                 token = tokenString,
-                user
+                user.Id,
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Balance
             });
         }
 
