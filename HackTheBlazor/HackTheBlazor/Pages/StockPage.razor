@@ -1,41 +1,47 @@
-﻿<body>
+﻿<body class="skin-black">
+
+	<header class="header">
+		<h2><strong>@name</strong></h2>
+
+		<span class="byline">@sector</span>
+	</header>
 
 
-	<div id="page" class="container">
-		<div id="content">
-			<div class="title">
-				<h2><strong>@name</strong></h2>
-				<span class="byline">@sector</span>
+		<div id="page" class="container">
+			<div id="content">
+				<div class="title">
+					
+					
+				</div>
+
+				<h6>
+					<p>@description</p>
+				</h6>
+
 			</div>
 
-			<h6>
-				<p>@description</p>
-			</h6>
-
 		</div>
 
-	</div>
-
-	<h3>
+		<h3 class = "fa">
 			Current Balance: fara numar
-	</h3>
+		</h3>
 
-	<div class="buyButton">
-		Buy $100
-	</div>
-
-	<div class="sellButton">
-		Sell $100
-	</div>
-
-	<div id="portfolio-wrapper">
-		<div id="portfolio" class="container">
-			<h2>Graph for one week</h2>
-			<span class="byline">
-				<Graphic Title="This is a stonks graph" Symbol="@symbol" />
-			</span>
+		<div class="buyButton">
+			Buy $100
 		</div>
-	</div>
+
+		<div class="sellButton">
+			Sell $100
+		</div>
+
+		<div id="portfolio-wrapper">
+			<div id="portfolio" class="container">
+				<h2>Graph for one week</h2>
+				<span class="icon">
+					<Graphic Title="This is a stonks graph" Symbol="@symbol" />
+				</span>
+			</div>
+		</div>
 
 
 </body>
