@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -70,36 +71,36 @@ namespace HackItApi.Controllers
             var openList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
             {
-                var a = point.Value["1. open"].ToString();
-                openList.Add(float.Parse(a));
+                var a = point.Value["1. open"];
+                openList.Add(Convert.ToSingle(a));
             }
             
             var highList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
             {
-                var a = point.Value["2. high"].ToString();
-                highList.Add(float.Parse(a));
+                var a = point.Value["2. high"];
+                highList.Add(Convert.ToSingle(a));
             }
             
             var lowList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
             {
-                var a = point.Value["3. low"].ToString();
-                lowList.Add(float.Parse(a));
+                var a = point.Value["3. low"];
+                lowList.Add(Convert.ToSingle(a));
             }
             
             var closeList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
             {
-                var a = point.Value["4. close"].ToString();
-                closeList.Add(float.Parse(a));
+                var a = point.Value["4. close"];
+                closeList.Add(Convert.ToSingle(a));
             }
             
             var volumeList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
             {
-                var a = point.Value["5. volume"].ToString();
-                volumeList.Add(float.Parse(a));
+                var a = point.Value["5. volume"];
+                volumeList.Add(Convert.ToSingle(a));
             }
 
             #endregion
@@ -134,11 +135,11 @@ namespace HackItApi.Controllers
             dynamic a = null;
             foreach (var point in obj["Time Series (1min)"])
             {
-                a = point.Value["4. close"].ToString();
+                a = point.Value["4. close"];
                 break;
             }
 
-            var b = float.Parse(a);
+            var b = Convert.ToSingle(a);
 
             return Ok(b);
         }
