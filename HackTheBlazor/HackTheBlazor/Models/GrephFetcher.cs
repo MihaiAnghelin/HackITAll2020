@@ -15,13 +15,7 @@ namespace HackTheBlazor.Models
 {
 	public class GraphFetcher : INotifyPropertyChanged
 	{
-		public GraphFetcher(GlobalService globalService)
-		{
-			this.globalService = globalService;
-		}
-
-		private readonly GlobalService globalService;
-
+		
 		public List<float> data;
 		public string strData = "";
 
@@ -59,10 +53,10 @@ namespace HackTheBlazor.Models
 
 		public async void loadSymbol(string symbol)
 		{
-			string str = new string(await globalService.LoadSymbolGraph(symbol));
+			//string str = new string(await globalService.LoadSymbolGraph(symbol));
 
-			data = new List<float> { };
-			resetData();
+			//data = new List<float> { };
+			//resetData();
 		}
 
 
