@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackTheBlazor", "HackTheBlazor\HackTheBlazor.csproj", "{D6827357-D956-45F5-BD46-C74E953E2479}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackItApi", "HackItApi\HackItApi.csproj", "{F8A10534-2ACC-47CF-A48B-E07068C95378}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D6827357-D956-45F5-BD46-C74E953E2479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6827357-D956-45F5-BD46-C74E953E2479}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6827357-D956-45F5-BD46-C74E953E2479}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6827357-D956-45F5-BD46-C74E953E2479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A10534-2ACC-47CF-A48B-E07068C95378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A10534-2ACC-47CF-A48B-E07068C95378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A10534-2ACC-47CF-A48B-E07068C95378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A10534-2ACC-47CF-A48B-E07068C95378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EDAE6BFF-F3F3-4F0C-A588-66E92F6FF8D0}
+		SolutionGuid = {EF152FD9-23CD-46D4-A509-02E282AFD824}
 	EndGlobalSection
 EndGlobal
