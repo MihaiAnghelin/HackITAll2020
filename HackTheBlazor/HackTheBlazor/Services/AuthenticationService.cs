@@ -11,6 +11,7 @@ namespace HackTheBlazor.Services
         Task Initialize();
         Task Login(string username, string password);
         Task Logout();
+        Task Register(string firstname, string lastname, string password, string email);
     }
 
     public class AuthenticationService : IAuthenticationService
@@ -48,6 +49,12 @@ namespace HackTheBlazor.Services
             User = null;
             await _localStorageService.RemoveItem("user");
             _navigationManager.NavigateTo("login");
+        }
+
+        public async Task Register(string firstname, string lastname, string password, string email)
+        {
+            User = await _httpService.Post<User>("/api/auth/register", new { Email = email, Password = password, FirstName = firstname, LastName = lastname });
+            await _localStorageService.SetItem("user", User);
         }
     }
 }
