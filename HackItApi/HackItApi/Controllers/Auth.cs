@@ -71,6 +71,14 @@ namespace HackItApi.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel model)
         {
+            if (_context.Users.Any(c => c.Email == model.Email))
+            {
+                return BadRequest(new
+                {
+                    message = "Account with this email already exists!"
+                });
+            }
+            
             var user = new User
             {
                 Id = Guid.NewGuid().ToString(),
