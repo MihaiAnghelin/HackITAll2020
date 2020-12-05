@@ -64,13 +64,25 @@ namespace HackItApi.Controllers
             return Ok(new
             {
                 token = tokenString,
-                user
+                user.Id,
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Balance
             });
         }
 
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel model)
         {
+            if (_context.Users.Any(c => c.Email == model.Email))
+            {
+                return BadRequest(new
+                {
+                    message = "Account with this email already exists!"
+                });
+            }
+            
             var user = new User
             {
                 Id = Guid.NewGuid().ToString(),
