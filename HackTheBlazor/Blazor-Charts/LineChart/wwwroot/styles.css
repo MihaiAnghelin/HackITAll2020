@@ -27,7 +27,7 @@
     }
 
     .line-chart div svg .y-axis-labels{
-        font-size:4px;
+        font-size:2px;
         text-anchor:end;
     }
 
@@ -38,7 +38,7 @@
     }
 
     .line-chart div svg .x-axis-labels{
-        font-size:4px;
+        font-size:2px;
         text-anchor:middle;
     }
 
