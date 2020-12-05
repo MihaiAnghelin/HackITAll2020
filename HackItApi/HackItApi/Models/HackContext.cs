@@ -1,23 +1,26 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace HackItApi.Models
 {
-    public class HackContext
+    public class HackContext : DbContext
     {
-        public string ConnectionString { get; set; }
-
-        public HackContext(string connectionString)
+        public HackContext(DbContextOptions<HackContext> options)
+            : base(options)
         {
-            ConnectionString = connectionString;
+        }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (optionsBuilder.IsConfigured) return;
+            //
+            optionsBuilder.UseMySql("server=167.71.46.107;port=3306;database=hackitall2020!;uid=admin;password=GreenMood2020!",
+                new MySqlServerVersion(new Version(14, 14, 21)),
+                mySqlOptions => mySqlOptions
+                    .CharSetBehavior(CharSetBehavior.NeverAppend));
         }
 
-        private MySqlConnection GetConnection()
-        {
-            return new MySqlConnection(ConnectionString);
-        }
+        public DbSet<Item> Items { get; set; }
     }
 }
