@@ -3,14 +3,16 @@ using System;
 using HackItApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HackItApi.Migrations
 {
     [DbContext(typeof(HackContext))]
-    partial class HackContextModelSnapshot : ModelSnapshot
+    [Migration("20201205132827_RemovedUserMoney")]
+    partial class RemovedUserMoney
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +36,6 @@ namespace HackItApi.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime(6)");

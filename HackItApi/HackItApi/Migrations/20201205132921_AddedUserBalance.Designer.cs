@@ -3,14 +3,16 @@ using System;
 using HackItApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HackItApi.Migrations
 {
     [DbContext(typeof(HackContext))]
-    partial class HackContextModelSnapshot : ModelSnapshot
+    [Migration("20201205132921_AddedUserBalance")]
+    partial class AddedUserBalance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
