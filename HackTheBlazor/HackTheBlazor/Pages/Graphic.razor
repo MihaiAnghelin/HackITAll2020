@@ -1,6 +1,5 @@
 ﻿@using System.Text.Json
 
-@inject GlobalService GlobalService
 @inject HttpClient HttpClient
 @*<div class="card text-center m-3">
 		<h5 class="card-header">Simple GET Request</h5>
@@ -48,7 +47,7 @@
 
 	protected override void OnInitialized()
 	{
-		f = new GraphFetcher(GlobalService);
+		f = new GraphFetcher();
 		f.init();
 		f.loadSymbol("SNE");
 
