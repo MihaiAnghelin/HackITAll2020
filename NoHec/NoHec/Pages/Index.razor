@@ -15,10 +15,10 @@
 {
     <Card>
 
-        <CardTitle Size="5">@companyData.name</CardTitle>
+        <CardTitle Size="5">@companyData.assetType</CardTitle>
 
         <CardBody>
-            <CardTitle Size="2">@companyData.assetType</CardTitle>
+            <CardTitle Size="2">@companyData.name</CardTitle>
 
             <CardText>
                 @this.companyData.description
@@ -33,10 +33,16 @@
             </Container>
         </CardBody>
     </Card>
+
+
+}
+else if (FirstRender)
+{
+    <span style="text-align:center; font-size:30px; margin-top:200px">Search For a Stonk</span>
 }
 else
 {
-    <span>Loading...</span>
+    <span style="text-align:center; font-size:30px; margin-top:200px">Loading...</span>
 }
 
 <LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
@@ -46,21 +52,29 @@ else
     private SearchModel search = new SearchModel();
     private string input = null;
     LineChart<double> lineChart;
-    private CompanyData companyData = new CompanyData();
+    private CompanyData companyData = null;
+    private bool FirstRender = true;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        while (true)
-        {
-            await GetData();
-            await HandleRedraw();
-            await Task.Delay(60000);
-        }
-    }
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    while (true)
+    //    {
+    //        await GetData();
+    //        await HandleRedraw();
+    //        await Task.Delay(60000);
+    //    }
+    //}
 
     private async Task Search()
     {
+        companyData = null;
+        FirstRender = false;
         companyData = (await GlobalService.GetCompanyData(search.Search)).companyData;
+
+        await GetData(search.Search);
+
+        await HandleRedraw();
+
     }
 
     //protected override async Task OnInitializedAsync()
@@ -80,7 +94,7 @@ else
     {
         return new LineChartDataset<double>
         {
-            Label = "Last 20 prices for SNE",
+            Label = "Last 5 months",
             Data = tabl,
             BackgroundColor = backgroundColors,
             BorderColor = borderColors,
@@ -90,17 +104,14 @@ else
         };
     }
 
-    string[] Labels = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" };
+    string[] Labels = { DateTime.Now.AddMonths(-5).ToString(), " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", DateTime.Now.ToString() };
     List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
     List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
 
-    private CompDetails data = new CompDetails();
     private List<double> tabl = new List<double>();
 
-    async Task GetData()
+    async Task GetData(string symbol)
     {
-        var r = new Random(DateTime.Now.Millisecond);
-
-        tabl = (await GlobalService.GetCompanyData("SNE")).tableData;
+        tabl = (await GlobalService.GetCompanyData(symbol)).tableData;
     }
 }
