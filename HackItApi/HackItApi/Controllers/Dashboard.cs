@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using HackItApi.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -153,8 +154,59 @@ namespace HackItApi.Controllers
             
             return Ok(b);
         }
-        
-        
+
+        [HttpPost("buyStonk")]
+        public async Task<IActionResult> BuyStonk(string symbol)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            var newStonk = new FavStonks
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserId = userId,
+                Symbol = symbol
+            };
+
+            await _context.FavStonks.AddAsync(newStonk);
+            await _context.SaveChangesAsync();
+            
+            return Ok(new
+            {
+                message = "Stonk Added Stuccessfully"
+            });
+        }
+
+        [HttpPost("sellStonk")]
+        public async Task<IActionResult> SellStonk(string id)
+        {
+            var stonk = _context.FavStonks.FirstOrDefault(c => c.Id == id);
+            if (stonk == null)
+                return BadRequest(new
+                {
+                    message = "Stonk is null!"
+                });
+            
+            _context.FavStonks.Remove(stonk);
+            await _context.SaveChangesAsync();
+            return Ok(new
+            {
+                message = "Sold stock"
+            });
+        }
+
+        [HttpGet("favStonks")]
+        public async Task<IActionResult> GetFavStonks()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var stonks = _context.FavStonks.Where(c => c.UserId == userId).Select(c => new
+            {
+                c.Id,
+                c.Symbol
+            });
+
+            return Ok(stonks);
+        }
         
     }
 }
