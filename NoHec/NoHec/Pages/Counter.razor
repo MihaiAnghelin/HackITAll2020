@@ -1,17 +1,35 @@
 ﻿@page "/counter"
 @attribute [Authorize]
 
-<h1>Counter</h1>
+<Card>
 
-<p>Current count: @currentCount</p>
+		<Badge Color="Color.Primary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+		<Badge Color="Color.Secondary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
 
-@code {
-    private int currentCount = 0;
+		<Badge Color="Color.Primary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
+		<Badge Color="Color.Secondary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
+
+		<Badge Color="Color.Primary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
+
+		<Badge Color="Color.Secondary">
+			<SmallStock Name="Sony" Value=100></SmallStock>
+		</Badge>
+</Card>
+
+	@code {
+
+
+
+	}
