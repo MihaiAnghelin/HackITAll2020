@@ -72,11 +72,11 @@ a, .btn-link {
     width: 300px;
     opacity: 0;
     transition: .5s ease;
-    background-color: #F8F9FA;
+    background-color: #343A40;
 }
 
 .text {
-    color: #001529;
+    color: #F8F9FA;
     font-size: 20px;
     position: absolute;
     top: 30%;
@@ -86,4 +86,6 @@ a, .btn-link {
     transform: translate(-50%, -50%);
     text-align: center;
 } 
+
+
  

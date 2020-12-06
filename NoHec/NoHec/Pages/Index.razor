@@ -5,11 +5,10 @@
 
 
 <EditForm Model="@search" OnValidSubmit="@Search">
-
-    <Label>Search for a symbol: </Label>
-    <InputText @bind-Value="search.Search" />
-
-    <button type="submit">Search</button>
+    <InputText placeholder="Search for a stonk" @bind-Value="search.Search" />
+    <Button Type="ButtonType.Submit" Color="Color.Dark">
+        <i class="oi oi-magnifying-glass"></i>
+    </Button>
 </EditForm>
 
 @if (this.companyData != null)
@@ -68,7 +67,7 @@
 }
 else if (FirstRender)
 {
-    <span style="text-align:center; font-size:30px; margin-top:200px">Search For a Stonk</span>
+    @*<span style="text-align:center; font-size:30px; margin-top:200px">Search For a Stonk</span>*@
 }
 else
 {
