@@ -9,6 +9,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using NoHec.Helpers;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 
 namespace NoHec
@@ -26,6 +29,11 @@ namespace NoHec
                 .AddScoped<IHttpService, HttpService>()
                 .AddScoped<ILocalStorageService, LocalStorageService>();
 
+            builder.Services.AddBlazorise(options =>
+            {
+                options.ChangeTextOnKeyPress = true;
+            }).AddBootstrapProviders().AddFontAwesomeIcons();
+
             builder.Services.AddScoped(x => {
                 var apiUrl = new Uri(builder.Configuration["apiUrl"]);
 
@@ -33,6 +41,8 @@ namespace NoHec
             });
 
             var host = builder.Build();
+
+            host.Services.UseBootstrapProviders().UseFontAwesomeIcons();
 
             var authenticationService = host.Services.GetRequiredService<IAuthenticationService>();
             await authenticationService.Initialize();
