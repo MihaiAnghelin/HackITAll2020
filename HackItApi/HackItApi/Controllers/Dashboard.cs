@@ -67,27 +67,27 @@ namespace HackItApi.Controllers
                 return BadRequest(new { message = "Api call is null" });
 
             #region Map Lists
-
-            var openList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["1. open"];
-                openList.Add(Convert.ToSingle(a));
-            }
+            //
+            // var openList = new List<float>();
+            // foreach (var point in obj["Time Series (1min)"])
+            // {
+            //     var a = point.Value["1. open"];
+            //     openList.Add(Convert.ToSingle(a));
+            // }
+            //
+            // var highList = new List<float>();
+            // foreach (var point in obj["Time Series (1min)"])
+            // {
+            //     var a = point.Value["2. high"];
+            //     highList.Add(Convert.ToSingle(a));
+            // }
             
-            var highList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["2. high"];
-                highList.Add(Convert.ToSingle(a));
-            }
-            
-            var lowList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["3. low"];
-                lowList.Add(Convert.ToSingle(a));
-            }
+            // var lowList = new List<float>();
+            // foreach (var point in obj["Time Series (1min)"])
+            // {
+            //     var a = point.Value["3. low"];
+            //     lowList.Add(Convert.ToSingle(a));
+            // }
             
             var closeList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
@@ -96,23 +96,16 @@ namespace HackItApi.Controllers
                 closeList.Add(Convert.ToSingle(a));
             }
             
-            var volumeList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["5. volume"];
-                volumeList.Add(Convert.ToSingle(a));
-            }
+            // var volumeList = new List<float>();
+            // foreach (var point in obj["Time Series (1min)"])
+            // {
+            //     var a = point.Value["5. volume"];
+            //     volumeList.Add(Convert.ToSingle(a));
+            // }
 
             #endregion
             
-            return Ok(new
-            {
-                openList,
-                highList,
-                lowList,
-                closeList,
-                volumeList
-            });
+            return Ok(closeList);
         }
 
         [HttpGet("getLatestPrice")]
