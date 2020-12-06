@@ -1,7 +1,16 @@
 ﻿@page "/"
 @attribute [Authorize]
 @inject IGlobalService GlobalService
-@inject ICompanyService CompanyService
+@inject ICompanyService CompanyService3
+
+<EditForm Model="@search" OnValidSubmit="@Search">
+
+    <Label>Search for a symbol: </Label>
+    <InputText @bind-Value="search.Search" />
+
+    <button type="submit">Search</button>
+</EditForm>
+
 @if (this.companyData != null)
 {
     <Card>
@@ -16,16 +25,14 @@
         </CardBody>
     </Card>
 }
-else
-{
-    <span>Loading...</span>
-}
 
 
 <LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
 
 
 @code{
+    private SearchModel search = new SearchModel();
+    private string input = null;
     LineChart<double> lineChart;
     private CompanyData companyData = new CompanyData();
 
@@ -39,10 +46,15 @@ else
         }
     }
 
-    protected override async Task OnInitializedAsync()
+    private async Task Search()
     {
-        companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
+        companyData = (await GlobalService.GetCompanyData(search.Search)).companyData;
     }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
+    //}
 
 
     async Task HandleRedraw()
