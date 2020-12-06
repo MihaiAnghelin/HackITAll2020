@@ -126,29 +126,31 @@ namespace HackItApi.Controllers
         [HttpGet("getLatestPrice")]
         public async Task<IActionResult> GetLastestPrice(string symbol)
         {
-            var response = await _client.GetAsync
-            ("https://www.alphavantage.co/query?" +
-             $"function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min" +
-             "&apikey=OLC6HWQVYQUI449V");
+            // var response = await _client.GetAsync
+            // ("https://www.alphavantage.co/query?" +
+            //  $"function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min" +
+            //  "&apikey=OLC6HWQVYQUI449V");
+            //
+            // if (!response.IsSuccessStatusCode)
+            //     return BadRequest(new { message = "Api call is null" });
+            //
+            // var json = await response.Content.ReadAsStringAsync();
+            // var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(json);
+            //
+            // if(obj is null)
+            //     return BadRequest(new { message = "Api call is null" });
+            //
+            // dynamic a = null;
+            // foreach (var point in obj["Time Series (1min)"])
+            // {
+            //     a = point.Value["4. close"];
+            //     break;
+            // }
+            //
+            // var b = Convert.ToSingle(a);
+
+            var b = 94.4;
             
-            if (!response.IsSuccessStatusCode)
-                return BadRequest(new { message = "Api call is null" });
-
-            var json = await response.Content.ReadAsStringAsync();
-            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(json);
-            
-            if(obj is null)
-                return BadRequest(new { message = "Api call is null" });
-
-            dynamic a = null;
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                a = point.Value["4. close"];
-                break;
-            }
-
-            var b = Convert.ToSingle(a);
-
             return Ok(b);
         }
         
