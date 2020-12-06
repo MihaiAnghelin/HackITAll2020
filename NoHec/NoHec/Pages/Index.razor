@@ -14,18 +14,30 @@
 @if (this.companyData != null)
 {
     <Card>
-        <CardImage Source="/images/img2.png" Style="width:300px; height: 300px;" Alt="Placeholder image">
-        </CardImage>
+
+        <CardTitle Size="5">@companyData.name</CardTitle>
+
         <CardBody>
-            <CardTitle Size="5">@companyData.assetType</CardTitle>
+            <CardTitle Size="2">@companyData.assetType</CardTitle>
+
             <CardText>
                 @this.companyData.description
             </CardText>
-            <Button Color="Color.Primary">Button</Button>
+            <Divider></Divider>
+
+            <Container>
+                <Row>
+                    <Button Color="Color.Danger">Sell</Button>
+                    <Button Color="Color.Success">Buy</Button>
+                </Row>
+            </Container>
         </CardBody>
     </Card>
 }
-
+else
+{
+    <span>Loading...</span>
+}
 
 <LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
 
