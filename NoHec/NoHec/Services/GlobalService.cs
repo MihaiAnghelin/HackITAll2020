@@ -9,7 +9,9 @@ namespace NoHec.Services
 		Task Register(string email, string password, string firstName, string lastName);
 		Task<CompDetails> GetCompanyData(string symbol);
 		Task<float> GetCompanyLastPrice(string symbol);
-
+		Task BuyStonk(string symbol);
+		Task SellStonk(string id);
+		Task<FavStonks> GetFavStonks();
 	}
 	public class GlobalService : IGlobalService
 	{
@@ -34,6 +36,22 @@ namespace NoHec.Services
 		{
 			return await _httpService.Get<float>($"/api/dashboard/getLatestPrice?symbol={symbol}");
 		}
+
+		public async Task BuyStonk(string symbol)
+        {
+			await _httpService.Get<dynamic>($"/api/dashboard/buyStonk?symbol={symbol}");
+        }
+
+		public async Task SellStonk(string id)
+		{
+			await _httpService.Get<dynamic>($"/api/dashboard/sellStonk?symbol={id}");
+		}
+
+		public async Task<FavStonks> GetFavStonks()
+        {
+			return await _httpService.Get<FavStonks>($"/api/dashboard/favStonks");
+        }
+
 	}
 
 

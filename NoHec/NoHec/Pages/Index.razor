@@ -2,6 +2,8 @@
 @attribute [Authorize]
 @inject IGlobalService GlobalService
 @inject ICompanyService CompanyService3
+@inject IJSRuntime JSRuntime
+
 
 <EditForm Model="@search" OnValidSubmit="@Search">
 
