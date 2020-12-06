@@ -7,78 +7,78 @@
 
 <EditForm Model="@search" OnValidSubmit="@Search">
 
-	<Label>Search for a symbol: </Label>
-	<InputText @bind-Value="search.Search" />
+    <Label>Search for a symbol: </Label>
+    <InputText @bind-Value="search.Search" />
 
-	<button type="submit">Search</button>
+    <button type="submit">Search</button>
 </EditForm>
 
 @if (this.companyData != null)
 {
-<Card>
-	<CardTitle Size="2">@companyData.name</CardTitle>
+    <Card>
+        <CardTitle Size="2">@companyData.name</CardTitle>
 
-	<CardBody>
-		<CardTitle Size="4">@companyData.assetType</CardTitle>
-		<CardText>
-			@this.companyData.description
-		</CardText>
-		<Divider></Divider>
+        <CardBody>
+            <CardTitle Size="4">@companyData.assetType</CardTitle>
+            <CardText>
+                @this.companyData.description
+            </CardText>
+            <Divider></Divider>
 
-		<Bar Breakpoint="Breakpoint.Desktop"
-			 Background="Background.Light"
-			 ThemeContrast="ThemeContrast.Light">
-			<BarBrand>
-				<Divider Type="DividerType.TextContent" Text="More info" />
-			</BarBrand>
-			<BarToggler />
-			<BarMenu>
-				<BarItem>
-					Country: @companyData.country
-				</BarItem>
-				<Divider  />
-				<BarItem>
-					Sector: @companyData.sector
-				</BarItem>
-				<Divider  />
-				<BarItem>
-					Industry: @companyData.industry
-				</BarItem>
+            <Bar Breakpoint="Breakpoint.Desktop"
+                 Background="Background.Light"
+                 ThemeContrast="ThemeContrast.Light">
+                <BarBrand>
+                    <Divider Type="DividerType.TextContent" Text="More info" />
+                </BarBrand>
+                <BarToggler />
+                <BarMenu>
+                    <BarItem>
+                        Country: @companyData.country
+                    </BarItem>
+                    <Divider />
+                    <BarItem>
+                        Sector: @companyData.sector
+                    </BarItem>
+                    <Divider />
+                    <BarItem>
+                        Industry: @companyData.industry
+                    </BarItem>
 
-			</BarMenu>
-		</Bar>
+                </BarMenu>
+            </Bar>
 
-		<Divider></Divider>
-		<Container>
+            <Divider></Divider>
+            <Container>
 
-			<Row>
-				<CardTitle Size="5" Color="TextColor.Secondary">
-					100
-					@this.companyData.currency
-				</CardTitle>
+                <Row>
+                    <CardTitle Size="5" Color="TextColor.Secondary">
+                        100
+                        @this.companyData.currency
+                    </CardTitle>
 
-			</Row>
-			<Row>
-				<Button @onclick="() => BuyStock(companyData.symbol)  Color="Color.Success">Buy</Button>
-			</Row>
-		</Container>
-	</CardBody>
-</Card>
+                </Row>
+                <Row>
+                    <Button @onclick="() => BuyStock(companyData.symbol)" Color="Color.Success">Buy</Button>
+                </Row>
+            </Container>
+        </CardBody>
+    </Card>
 
 
 }
 else if (FirstRender)
 {
-	<span style="text-align:center; font-size:30px; margin-top:200px">Search For a Stonk</span>
+    <span style="text-align:center; font-size:30px; margin-top:200px">Search For a Stonk</span>
 }
 else
 {
-	<span style="text-align:center; font-size:30px; margin-top:200px">Loading...</span>
+    <span style="text-align:center; font-size:30px; margin-top:200px">Loading...</span>
 }
 
 <Jumbotron Background="Background.Light">
 
-	<LineChart @ref="lineChart" TItem="double" Style="max-width: 100%" />
+    <LineChart @ref="lineChart" TItem="double" Style="max-width: 100%" />
 
 </Jumbotron>
 
@@ -110,11 +110,6 @@ else
         await HandleRedraw();
 
     }
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
-    //}
 
 
     async Task HandleRedraw()
