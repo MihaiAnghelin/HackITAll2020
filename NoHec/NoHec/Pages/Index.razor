@@ -1,7 +1,6 @@
 ﻿@page "/"
 @attribute [Authorize]
 @inject IGlobalService GlobalService
-<<<<<<< HEAD
 @inject ICompanyService CompanyService
 @if (this.companyData != null)
 {
@@ -21,9 +20,7 @@ else
 {
     <span>Loading...</span>
 }
-=======
 
->>>>>>> vlad
 
 <LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
 
