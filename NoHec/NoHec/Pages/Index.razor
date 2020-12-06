@@ -5,12 +5,12 @@
 @if (this.companyData != null)
 {
     <Card>
-        <CardImage Source="/assets/images/gallery/9.jpg" Alt="Placeholder image">
+        <CardImage Source="/images/img2.png" Style="width:300px; height: 300px;" Alt="Placeholder image">
         </CardImage>
         <CardBody>
-            <CardTitle Size="5">@companyData.name</CardTitle>
+            <CardTitle Size="5">@companyData.assetType</CardTitle>
             <CardText>
-                @companyData.description
+                @this.companyData.description
             </CardText>
             <Button Color="Color.Primary">Button</Button>
         </CardBody>
@@ -27,24 +27,21 @@ else
 
 @code{
     LineChart<double> lineChart;
-    CompanyData companyData = new CompanyData();
-    bool loading = false;
+    private CompanyData companyData = new CompanyData();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        loading = true;
-        await GetData();
-        companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
-        loading = false;
-
-        Console.WriteLine(companyData.country);
-
         while (true)
         {
             await GetData();
             await HandleRedraw();
             await Task.Delay(60000);
         }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
     }
 
 
