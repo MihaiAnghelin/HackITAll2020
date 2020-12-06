@@ -27,7 +27,8 @@ namespace NoHec
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IGlobalService, GlobalService>()
                 .AddScoped<IHttpService, HttpService>()
-                .AddScoped<ILocalStorageService, LocalStorageService>();
+                .AddScoped<ILocalStorageService, LocalStorageService>()
+                .AddScoped<ICompanyService, CompanyService>();
 
             builder.Services.AddBlazorise(options =>
             {

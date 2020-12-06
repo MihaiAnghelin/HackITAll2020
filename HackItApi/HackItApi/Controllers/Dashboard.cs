@@ -67,27 +67,6 @@ namespace HackItApi.Controllers
                 return BadRequest(new { message = "Api call is null" });
 
             #region Map Lists
-
-            var openList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["1. open"];
-                openList.Add(Convert.ToSingle(a));
-            }
-            
-            var highList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["2. high"];
-                highList.Add(Convert.ToSingle(a));
-            }
-            
-            var lowList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["3. low"];
-                lowList.Add(Convert.ToSingle(a));
-            }
             
             var closeList = new List<float>();
             foreach (var point in obj["Time Series (1min)"])
@@ -95,23 +74,32 @@ namespace HackItApi.Controllers
                 var a = point.Value["4. close"];
                 closeList.Add(Convert.ToSingle(a));
             }
-            
-            var volumeList = new List<float>();
-            foreach (var point in obj["Time Series (1min)"])
-            {
-                var a = point.Value["5. volume"];
-                volumeList.Add(Convert.ToSingle(a));
-            }
 
             #endregion
+
+            closeList = closeList.Take(20).ToList();
+            closeList.Reverse();
+            
+            var response2 = await _client.GetAsync(
+                "https://www.alphavantage.co/query?" +
+                $"function=OVERVIEW&symbol={symbol}&apikey=OLC6HWQVYQUI449V"
+            );
+
+            if (!response2.IsSuccessStatusCode)
+                return BadRequest(new { message = "Api call is null" });
+
+            var json2 = await response2.Content.ReadAsStreamAsync();
+
+            var obj2 = await JsonSerializer.DeserializeAsync<CompanyData>(json2);
+            
+            if(obj2 is null)
+                return BadRequest(new { message = "Api call is null" });
+            
             
             return Ok(new
             {
-                openList,
-                highList,
-                lowList,
-                closeList,
-                volumeList
+                CompanyData = obj2,
+                TableData = closeList
             });
         }
 

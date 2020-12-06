@@ -1,10 +1,46 @@
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <AppRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<Blazorise.ThemeProvider Theme="@theme">
+	<Router AppAssembly="@typeof(Program).Assembly">
+		<Found Context="routeData">
+			<AppRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+		</Found>
+		<NotFound>
+			<LayoutView Layout="@typeof(MainLayout)">
+				<p>Sorry, there's nothing at this address.</p>
+			</LayoutView>
+		</NotFound>
+	</Router>
+</Blazorise.ThemeProvider>
+
+
+@code{
+	private Theme theme = new Theme
+	{
+		ColorOptions = new ThemeColorOptions
+		{
+			Primary = "#ABCCB0",
+			Secondary = "#D19E8A",
+			Light = "#F5EECD",
+			Dark = "#6B685A",
+		},
+		IsGradient = true,
+		IsRounded = true,
+		DropdownOptions = new ThemeDropdownOptions
+		{
+			BorderRadius = "0.5px",
+			GradientBlendPercentage = 0.5f,
+		},
+		BackgroundOptions = new ThemeBackgroundOptions
+		{
+			Primary = "#ABCCB0",
+			Secondary = "#D19E8A",
+			Light = "#F5EECD",
+			Dark = "#6B685A",
+			Body = "#F5EECD"
+		}
+	};
+
+	protected override async void OnInitialized()
+	{
+		theme.ThemeHasChanged();
+	}
+}
