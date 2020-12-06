@@ -1,38 +1,68 @@
 ﻿@page "/counter"
 @attribute [Authorize]
 @inherits LayoutComponentBase
+@inject IGlobalService GlobalService
 
 <h2>My Wallet</h2>
 
 <Card>
+    @foreach (var stonk in list)
+    {
+        <Badge Color="i++ % 2 == 0 ? Color.Primary : Color.Secondary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
+            <Card>
+                <Jumbotron>
+                    <Layout>
+                        <LayoutHeader>
+                            <CardText Size="1">
+                                @stonk.symbol
+                            </CardText>
+                        </LayoutHeader>
+                        <LayoutContent>
+                            <CardText Size="2">
+                                100 USD
+                            </CardText>
+                        </LayoutContent>
+                        <LayoutFooter>
+                            <Container>
+                                <Row>
+                                    <Button Color="Color.Danger" @onclick="() => SellStonk(stonk.id)" Margin="Margin.Is4.OnX">Sell</Button>
+                                </Row>
+                            </Container>
+                        </LayoutFooter>
+                    </Layout>
+                </Jumbotron>
 
-    <Badge Color="Color.Primary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
-    <Badge Color="Color.Secondary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
 
-    <Badge Color="Color.Primary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
+            </Card>
+        
+        </Badge>
 
-    <Badge Color="Color.Secondary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
 
-    <Badge Color="Color.Primary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
+    }
 
-    <Badge Color="Color.Secondary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
-        <SmallStock Name="Sony" Value=100USD></SmallStock>
-    </Badge>
+
 </Card>
 
 
 @code {
+    int i = 0;
+    List<FavStonks> list = new List<FavStonks>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAll();
+    }
 
 
+    private async Task GetAll()
+    {
+        list = await GlobalService.GetFavStonks();
+    }
+
+    private async Task SellStonk(string id)
+    {
+        await GlobalService.SellStonk(id);
+        await GetAll();
+    }
 
 }

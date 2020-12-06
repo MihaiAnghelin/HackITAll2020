@@ -11,7 +11,7 @@ namespace NoHec.Services
 		Task<float> GetCompanyLastPrice(string symbol);
 		Task BuyStonk(string symbol);
 		Task SellStonk(string id);
-		Task<FavStonks> GetFavStonks();
+		Task<List<FavStonks>> GetFavStonks();
 	}
 	public class GlobalService : IGlobalService
 	{
@@ -44,12 +44,12 @@ namespace NoHec.Services
 
 		public async Task SellStonk(string id)
 		{
-			await _httpService.Get<dynamic>($"/api/dashboard/sellStonk?symbol={id}");
+			await _httpService.Get<dynamic>($"/api/dashboard/sellStonk?id={id}");
 		}
 
-		public async Task<FavStonks> GetFavStonks()
+		public async Task<List<FavStonks>> GetFavStonks()
         {
-			return await _httpService.Get<FavStonks>($"/api/dashboard/favStonks");
+			return await _httpService.Get<List<FavStonks>>($"/api/dashboard/favStonks");
         }
 
 	}
