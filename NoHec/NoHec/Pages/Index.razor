@@ -4,21 +4,30 @@
 @inject ICompanyService CompanyService
 @if (this.companyData != null)
 {
-    <Card>
-        <CardImage Source="/images/img2.png" Style="width:300px; height: 300px;" Alt="Placeholder image">
-        </CardImage>
-        <CardBody>
-            <CardTitle Size="5">@companyData.assetType</CardTitle>
-            <CardText>
-                @this.companyData.description
-            </CardText>
-            <Button Color="Color.Primary">Button</Button>
-        </CardBody>
-    </Card>
+<Card>
+
+	<CardTitle Size="5">@companyData.name</CardTitle>
+
+	<CardBody>
+		<CardTitle Size="2">@companyData.assetType</CardTitle>
+
+		<CardText>
+			@this.companyData.description
+		</CardText>
+		<Divider></Divider>
+
+		<Container>
+			<Row>
+				<Button Color="Color.Danger">Sell</Button>
+				<Button Color="Color.Success">Buy</Button>
+			</Row>
+		</Container>
+	</CardBody>
+</Card>
 }
 else
 {
-    <span>Loading...</span>
+	<span>Loading...</span>
 }
 
 
@@ -26,57 +35,57 @@ else
 
 
 @code{
-    LineChart<double> lineChart;
-    private CompanyData companyData = new CompanyData();
+	LineChart<double> lineChart;
+	private CompanyData companyData = new CompanyData();
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        while (true)
-        {
-            await GetData();
-            await HandleRedraw();
-            await Task.Delay(60000);
-        }
-    }
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		while (true)
+		{
+			await GetData();
+			await HandleRedraw();
+			await Task.Delay(60000);
+		}
+	}
 
-    protected override async Task OnInitializedAsync()
-    {
-        companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
-    }
+	protected override async Task OnInitializedAsync()
+	{
+		companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
+	}
 
 
-    async Task HandleRedraw()
-    {
-        await lineChart.Clear();
+	async Task HandleRedraw()
+	{
+		await lineChart.Clear();
 
-        await lineChart.AddLabelsDatasetsAndUpdate(Labels, GetLineChartDataset());
-    }
+		await lineChart.AddLabelsDatasetsAndUpdate(Labels, GetLineChartDataset());
+	}
 
-    LineChartDataset<double> GetLineChartDataset()
-    {
-        return new LineChartDataset<double>
-        {
-            Label = "Last 20 prices for SNE",
-            Data = tabl,
-            BackgroundColor = backgroundColors,
-            BorderColor = borderColors,
-            Fill = true,
-            PointRadius = 4,
-            BorderDash = new List<int> { }
-        };
-    }
+	LineChartDataset<double> GetLineChartDataset()
+	{
+		return new LineChartDataset<double>
+		{
+			Label = "Last 20 prices for SNE",
+			Data = tabl,
+			BackgroundColor = backgroundColors,
+			BorderColor = borderColors,
+			Fill = true,
+			PointRadius = 4,
+			BorderDash = new List<int> { }
+		};
+	}
 
-    string[] Labels = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" };
-    List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
-    List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
+	string[] Labels = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" };
+	List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
+	List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
 
-    private CompDetails data = new CompDetails();
-    private List<double> tabl = new List<double>();
+	private CompDetails data = new CompDetails();
+	private List<double> tabl = new List<double>();
 
-    async Task GetData()
-    {
-        var r = new Random(DateTime.Now.Millisecond);
+	async Task GetData()
+	{
+		var r = new Random(DateTime.Now.Millisecond);
 
-        tabl = (await GlobalService.GetCompanyData("SNE")).tableData;
-    }
+		tabl = (await GlobalService.GetCompanyData("SNE")).tableData;
+	}
 }
