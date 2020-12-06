@@ -1,10 +1,26 @@
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <AppRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<Blazorise.ThemeProvider Theme="@theme">
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AppRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</Blazorise.ThemeProvider>
+
+@code{
+    private Theme theme = new Theme
+    {
+        ColorOptions = new ThemeColorOptions
+        {
+            Primary = "#94D1EB",
+            Secondary = "#7E5496",
+            
+        },
+        IsGradient = true,
+        IsRounded = false,
+    };
+}
