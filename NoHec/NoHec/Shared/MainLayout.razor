@@ -16,20 +16,39 @@
                     </Heading>
                     <Divider></Divider>
                     <Heading Size="HeadingSize.Is5">
-                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                            <Figure Size="FigureSize.Is256x256" style="max-width:250px">
-                                <FigureImage Source="images/img2.png" AlternateText="256x256" />
-                            </Figure>
+                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All" style="max-width:250px">
+                            <div class="container">
+                                <Figure Size="FigureSize.Is256x256">
+                                    <FigureImage Source="images/img2.png" AlternateText="256x256" />
+                                    <div class="overlay">
+                                        <div class="text">Dashboard</div>
+                                    </div>
+                                </Figure>
+                            </div>
                         </NavLink>
 
                         <NavLink class="nav-link" href="counter" style="max-width:250px">
-                            <FigureImage Source="images/img1.jpg" AlternateText="256x256" />
+                            <div class="container">
+                                <Figure Size="FigureSize.Is256x256">
+                                    <FigureImage Source="images/img1.jpg" AlternateText="256x256" />
+                                    <div class="overlay">
+                                        <div class="text">Wallet</div>
+                                    </div>
+                                </Figure>
+                            </div>
                         </NavLink>
 
-                        @*<NavLink class="nav-link" href="fetchdata">
-                                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                            </NavLink>*@
+                        <NavLink class="nav-link" href="logout" style="max-width:250px">
+                            <div class="container">
+                                <Figure Size="FigureSize.Is256x256">
+                                    <FigureImage Source="images/img3.jpg" AlternateText="256x256" />
+                                    <div class="overlay">
+                                        <div class="text">Logout</div>
+                                    </div>
+                                </Figure>
+                            </div>
 
+                        </NavLink>
                     </Heading>
                 </Jumbotron>
             }
