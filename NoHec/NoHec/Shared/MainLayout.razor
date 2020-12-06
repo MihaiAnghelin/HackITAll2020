@@ -3,110 +3,48 @@
 @inject NavigationManager NavigationManager
 
 
-<<<<<<< HEAD
 <Layout Sider="true">
 
-	<LayoutSider>
-		<LayoutSiderContent>
+    <LayoutSider>
+        <LayoutSiderContent>
 
-			@if (AuthenticationService.User != null)
-			{
-=======
-	<Layout Sider="true">
+            @if (AuthenticationService.User != null)
+            {
+                <Jumbotron Background="Background.Light">
+                    <Heading>
+                        No scam market
+                    </Heading>
+                    <Divider></Divider>
+                    <Heading Size="HeadingSize.Is5">
+                        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                            <Figure Size="FigureSize.Is256x256" style="max-width:250px">
+                                <FigureImage Source="images/img2.png" AlternateText="256x256" />
+                            </Figure>
+                        </NavLink>
 
-		<LayoutSider>
-			<LayoutSiderContent>
-				Sider
+                        <NavLink class="nav-link" href="counter" style="max-width:250px">
+                            <FigureImage Source="images/img1.jpg" AlternateText="256x256" />
+                        </NavLink>
 
-				@if (AuthenticationService.User != null)
-				{
+                        @*<NavLink class="nav-link" href="fetchdata">
+                                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                            </NavLink>*@
 
-					<Accordion>
-						<Collapse Visible="@notcollapseNavMenu">
-							<CollapseHeader>
-								<Heading>
-									No scam market
-								</Heading>
-								<Divider></Divider>
-								<Heading Size="HeadingSize.Is5">
-									<Button Clicked="@(()=>notcollapseNavMenu = !notcollapseNavMenu)">
-										@(notcollapseNavMenu?"Hide":"Show")
-									</Button>
-								</Heading>
-							</CollapseHeader>
-							<CollapseBody>
-                                <Heading Size="HeadingSize.Is5">
-                                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                                        <Figure Size="FigureSize.Is256x256">
-                                            <FigureImage Source="images/img2.png" AlternateText="256x256" />
-                                        </Figure>
-                                    </NavLink>
+                    </Heading>
+                </Jumbotron>
+            }
 
-                                    <NavLink class="nav-link" href="counter">
-                                        <span class="oi oi-plus" aria-hidden="true"></span> Counter
-                                    </NavLink>
-
-                                    <NavLink class="nav-link" href="fetchdata">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                                    </NavLink>
-
-                                    <NavLink class="nav-link" href="logout">
-                                        <span class="oi oi-list-rich" aria-hidden="true"></span> Log out
-                                    </NavLink>
-
-                                </Heading>
-							</CollapseBody>
-						</Collapse>
-					</Accordion>
-
-				}
-			</LayoutSiderContent>
-		</LayoutSider>
-		<Layout>
-			<LayoutHeader Fixed="true">
-
-				<text>
-					
-				</text>
-
-			</LayoutHeader>
-			<LayoutContent>
->>>>>>> tibi
-				<Jumbotron Background="Background.Light">
-					<Heading>
-							No scam market
-					</Heading>
-					<Divider></Divider>
-					<Heading Size="HeadingSize.Is5">
-						<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-							<Figure Size="FigureSize.Is256x256" style="max-width:250px">
-								<FigureImage Source="images/img2.png" AlternateText="256x256" />
-							</Figure>
-						</NavLink>
-
-						<NavLink class="nav-link" href="counter" style="max-width:250px">
-							<FigureImage Source="images/img1.jpg" AlternateText="256x256" />
-						</NavLink>
-
-						@*<NavLink class="nav-link" href="fetchdata">
-								<span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-							</NavLink>*@
-
-					</Heading>
-				</Jumbotron>
-			}
-
-		</LayoutSiderContent>
-	</LayoutSider>
+        </LayoutSiderContent>
+    </LayoutSider>
 
 
-	<Layout>
-		<LayoutContent>
-			<Jumbotron Background="Background.Light">
-				@Body
-			</Jumbotron>
-		</LayoutContent>
-	</Layout>
+    <Layout>
+        <LayoutContent>
+            <Jumbotron Background="Background.Light">
+                @Body
+            </Jumbotron>
+        </LayoutContent>
+    </Layout>
 
 
 </Layout>
@@ -114,6 +52,6 @@
 
 
 
-		@code{
-			bool notcollapseNavMenu = true;
-		}
+@code{
+    bool notcollapseNavMenu = true;
+}
