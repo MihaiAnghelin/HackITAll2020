@@ -7,7 +7,7 @@ namespace NoHec.Services
     public interface IGlobalService
     {
         Task Register(string email, string password, string firstName, string lastName);
-        Task<List<double>> GetChardData(string symbol);
+        Task<CompDetails> GetCompanyData(string symbol);
 
     }
     public class GlobalService : IGlobalService
@@ -24,10 +24,11 @@ namespace NoHec.Services
             await _httpService.Post<RegisterModel>("/api/auth/register", new { email, password, firstName, lastName });
         }
 
-        public async Task<List<double>> GetChardData(string symbol)
+        public async Task<CompDetails> GetCompanyData(string symbol)
         {
-            return await _httpService.Get<List<double>>($"api/dashboard/getGraphData?symbol={symbol}");
+            return await _httpService.Get<CompDetails>($"api/dashboard/getGraphData?symbol={symbol}");
         }
+
     }
 
 

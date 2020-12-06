@@ -1,6 +1,25 @@
 ﻿@page "/"
 @attribute [Authorize]
 @inject IGlobalService GlobalService
+@inject ICompanyService CompanyService
+@if (this.companyData != null)
+{
+    <Card>
+        <CardImage Source="/assets/images/gallery/9.jpg" Alt="Placeholder image">
+        </CardImage>
+        <CardBody>
+            <CardTitle Size="5">@companyData.name</CardTitle>
+            <CardText>
+                @companyData.description
+            </CardText>
+            <Button Color="Color.Primary">Button</Button>
+        </CardBody>
+    </Card>
+}
+else
+{
+    <span>Loading...</span>
+}
 
 
 <LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
@@ -8,13 +27,26 @@
 
 @code{
     LineChart<double> lineChart;
+    CompanyData companyData = new CompanyData();
+    bool loading = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        
-        await HandleRedraw();
-        await Task.Delay(5000);
+        loading = true;
+        await GetData();
+        companyData = (await GlobalService.GetCompanyData("SNE")).companyData;
+        loading = false;
+
+        Console.WriteLine(companyData.country);
+
+        while (true)
+        {
+            await GetData();
+            await HandleRedraw();
+            await Task.Delay(60000);
+        }
     }
+
 
     async Task HandleRedraw()
     {
@@ -27,26 +59,27 @@
     {
         return new LineChartDataset<double>
         {
-            Label = "# of randoms",
-            Data = data,
+            Label = "Last 20 prices for SNE",
+            Data = tabl,
             BackgroundColor = backgroundColors,
             BorderColor = borderColors,
             Fill = true,
-            PointRadius = 2,
+            PointRadius = 4,
             BorderDash = new List<int> { }
         };
     }
 
-    string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+    string[] Labels = { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a" };
     List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
     List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
 
-    private List<double> data = null;
+    private CompDetails data = new CompDetails();
+    private List<double> tabl = new List<double>();
 
     async Task GetData()
     {
         var r = new Random(DateTime.Now.Millisecond);
 
-        data = await GlobalService.GetChardData("SNE");
+        tabl = (await GlobalService.GetCompanyData("SNE")).tableData;
     }
 }
