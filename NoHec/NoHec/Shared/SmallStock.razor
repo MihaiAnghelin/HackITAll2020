@@ -1,6 +1,37 @@
-﻿<h3>SmallStock</h3>
+﻿
+<Card>
+
+		<Layout Style="position: center">
+			<LayoutHeader>
+				<Heading>
+					@Name
+				</Heading>
+			</LayoutHeader>
+			<LayoutContent>
+				<Heading>
+					@Value
+				</Heading>
+
+			</LayoutContent>
+			<LayoutFooter>
+				<Divider></Divider>
+				<Container>
+					<Row>
+						<Button Color="Color.Danger">Sell</Button>
+						<Button Color="Color.Success">Buy</Button>
+					</Row>
+				</Container>
+			</LayoutFooter>
+		</Layout>
+
+
+</Card>
 
 
 @code {
+	[Parameter]
+	public string Name { get; set; }
 
+	[Parameter]
+	public string Value { get; set; }
 }

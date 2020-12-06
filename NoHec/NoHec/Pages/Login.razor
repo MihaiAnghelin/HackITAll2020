@@ -2,14 +2,17 @@
 @using System.ComponentModel.DataAnnotations
 @inject IAuthenticationService AuthenticationService
 @inject NavigationManager NavigationManager
+@inherits LayoutComponentBase
 
 <div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info">
-        Username: test@test.com<br />
-        Password: Test10!
-    </div>
+    @*<div class="alert alert-info">
+            Username: test@test.com<br />
+            Password: Test10!
+        </div>*@
+
     <div class="card">
-        <h4 class="card-header">Blazor WebAssembly JWT Login Example</h4>
+        
+        <h4 class="card-header" id="tibi">Login</h4>
         <div class="card-body">
             <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
                 <DataAnnotationsValidator />
@@ -23,13 +26,15 @@
                     <InputText @bind-Value="model.Password" type="password" class="form-control" />
                     <ValidationMessage For="@(() => model.Password)" />
                 </div>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" Color="Color.Primary">
                     @if (loading)
                     {
                         <span class="spinner-border spinner-border-sm mr-1"></span>
                     }
                     Login
                 </button>
+                <Button Color="Color.Primary" Style="width:83px; height:37px;" Type="ButtonType.Link" To="register">Register</Button>
+
                 @if (!string.IsNullOrEmpty(error))
                 {
                     <div class="alert alert-danger mt-3 mb-0">@error</div>
@@ -49,7 +54,7 @@
         // redirect to home if already logged in
         if (AuthenticationService.User != null)
         {
-            NavigationManager.NavigateTo("");
+            NavigationManager.NavigateTo("/");
         }
     }
 

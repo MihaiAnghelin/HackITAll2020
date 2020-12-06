@@ -13,26 +13,33 @@
 
 @if (this.companyData != null)
 {
-    <Card>
+<Card>
+    <CardTitle Size="2">@companyData.name</CardTitle>
 
-        <CardTitle Size="5">@companyData.assetType</CardTitle>
+    <CardBody>
+        <CardTitle Size="4">@companyData.assetType</CardTitle>
 
-        <CardBody>
-            <CardTitle Size="2">@companyData.name</CardTitle>
+        <CardText>
+            @this.companyData.description
+        </CardText>
+        <Divider></Divider>
 
-            <CardText>
-                @this.companyData.description
-            </CardText>
-            <Divider></Divider>
+        <Container>
 
-            <Container>
-                <Row>
-                    <Button Color="Color.Danger">Sell</Button>
-                    <Button Color="Color.Success">Buy</Button>
-                </Row>
-            </Container>
-        </CardBody>
-    </Card>
+            <Row>
+                <CardTitle Size="5" Color="TextColor.Secondary">
+                    100
+                    @this.companyData.currency
+                </CardTitle>
+
+            </Row>
+            <Row>
+                <Button Color="Color.Danger">Sell</Button>
+                <Button Color="Color.Success">Buy</Button>
+            </Row>
+        </Container>
+    </CardBody>
+</Card>
 
 
 }
@@ -45,8 +52,11 @@ else
     <span style="text-align:center; font-size:30px; margin-top:200px">Loading...</span>
 }
 
-<LineChart @ref="lineChart" TItem="double" Style="max-width: 500px" />
+<Jumbotron Background="Background.Light">
 
+    <LineChart @ref="lineChart" TItem="double" Style="max-width: 100%" />
+
+</Jumbotron>
 
 @code{
     private SearchModel search = new SearchModel();
