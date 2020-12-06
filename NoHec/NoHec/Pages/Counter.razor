@@ -1,17 +1,68 @@
 ﻿@page "/counter"
 @attribute [Authorize]
+@inherits LayoutComponentBase
+@inject IGlobalService GlobalService
 
-<h1>Counter</h1>
+<h2>My Wallet</h2>
 
-<p>Current count: @currentCount</p>
+<Card>
+    @foreach (var stonk in list)
+    {
+        <Badge Color="i++ % 2 == 0 ? Color.Primary : Color.Secondary" Margin="Margin.Is2.OnMobile.Is5.OnDesktop">
+            <Card>
+                <Jumbotron>
+                    <Layout>
+                        <LayoutHeader>
+                            <CardText Size="1">
+                                @stonk.symbol
+                            </CardText>
+                        </LayoutHeader>
+                        <LayoutContent>
+                            <CardText Size="2">
+                                100 USD
+                            </CardText>
+                        </LayoutContent>
+                        <LayoutFooter>
+                            <Container>
+                                <Row>
+                                    <Button Color="Color.Danger" @onclick="() => SellStonk(stonk.id)" Margin="Margin.Is4.OnX">Sell</Button>
+                                </Row>
+                            </Container>
+                        </LayoutFooter>
+                    </Layout>
+                </Jumbotron>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+            </Card>
+        
+        </Badge>
+
+
+    }
+
+
+</Card>
+
 
 @code {
-    private int currentCount = 0;
+    int i = 0;
+    List<FavStonks> list = new List<FavStonks>();
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        await GetAll();
     }
+
+
+    private async Task GetAll()
+    {
+        list = await GlobalService.GetFavStonks();
+    }
+
+    private async Task SellStonk(string id)
+    {
+        await GlobalService.SellStonk(id);
+        await GetAll();
+    }
+
 }

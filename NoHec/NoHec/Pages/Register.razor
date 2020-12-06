@@ -3,16 +3,13 @@
 @inject IGlobalService GlobalService
 @inject NavigationManager NavigationManager
 
-
-<h3>Register</h3>
-
 <div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info">
+    @*<div class="alert alert-info">
         Username: test@test.com<br />
         Password: Test10!
-    </div>
+    </div>*@
     <div class="card">
-        <h4 class="card-header">Blazor WebAssembly JWT Login Example</h4>
+        <h4 class="card-header">Register</h4>
         <div class="card-body">
             <EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
                 <DataAnnotationsValidator />
@@ -36,17 +33,18 @@
                     <InputText @bind-Value="model.Password" type="password" class="form-control" />
                     <ValidationMessage For="@(() => model.Password)" />
                 </div>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" Color="Color.Primary">
                     @if (loading)
                     {
                         <span class="spinner-border spinner-border-sm mr-1"></span>
                     }
-                    Login
+                    Register
                 </button>
                 @*@if (!string.IsNullOrEmpty(error))
-                {
-                    <div class="alert alert-danger mt-3 mb-0">@error</div>
-                }*@
+        {
+            <div class="alert alert-danger mt-3 mb-0">@error</div>
+          }*@
+                <Button Color="Color.Primary" Style="width:77px; height:38px;" Type="ButtonType.Link" To="login">Back</Button>
             </EditForm>
         </div>
     </div>
@@ -63,13 +61,18 @@
         try
         {
             await GlobalService.Register(model.Email, model.Password, model.FirstName, model.LastName);
-            NavigationManager.NavigateTo("/login", true);
+            NavigationManager.NavigateTo("login", true);
         }
         catch (Exception ex)
         {
             //error = ex.Message;
             loading = false;
             StateHasChanged();
+        }
+
+        if (!loading)
+        {
+            NavigationManager.NavigateTo("login", true);
         }
     }
 

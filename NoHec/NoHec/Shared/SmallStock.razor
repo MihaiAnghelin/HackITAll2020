@@ -1,0 +1,46 @@
+﻿@inject IGlobalService GlobalService
+
+<Card>
+
+    <Jumbotron>
+        <Layout>
+            <LayoutHeader>
+                <CardText Size="1">
+                    @Name
+                </CardText>
+            </LayoutHeader>
+            <LayoutContent>
+                <CardText Size="2">
+                    @Value
+                </CardText>
+
+            </LayoutContent>
+            <LayoutFooter>
+                <Container>
+                    <Row>
+                        <Button Color="Color.Danger" @onclick="() => SellStonk(Id)" Margin="Margin.Is4.OnX">Sell</Button>
+                    </Row>
+                </Container>
+            </LayoutFooter>
+        </Layout>
+    </Jumbotron>
+
+
+</Card>
+
+
+@code { 
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    private async Task SellStonk(string id)
+    {
+        await GlobalService.SellStonk(id);
+    } 
+    }
