@@ -2,6 +2,8 @@
 @attribute [Authorize]
 @inject IGlobalService GlobalService
 @inject ICompanyService CompanyService3
+@inject IJSRuntime JSRuntime
+
 
 <EditForm Model="@search" OnValidSubmit="@Search">
 
@@ -13,33 +15,33 @@
 
 @if (this.companyData != null)
 {
-<Card>
-    <CardTitle Size="2">@companyData.name</CardTitle>
+    <Card>
+        <CardTitle Size="2">@companyData.name</CardTitle>
 
-    <CardBody>
-        <CardTitle Size="4">@companyData.assetType</CardTitle>
+        <CardBody>
+            <CardTitle Size="4">@companyData.assetType</CardTitle>
 
-        <CardText>
-            @this.companyData.description
-        </CardText>
-        <Divider></Divider>
+            <CardText>
+                @this.companyData.description
+            </CardText>
+            <Divider></Divider>
 
-        <Container>
+            <Container>
 
-            <Row>
-                <CardTitle Size="5" Color="TextColor.Secondary">
-                    100
-                    @this.companyData.currency
-                </CardTitle>
+                <Row>
+                    <CardTitle Size="5" Color="TextColor.Secondary">
+                        100
+                        @this.companyData.currency
+                    </CardTitle>
 
-            </Row>
-            <Row>
-                <Button Color="Color.Danger">Sell</Button>
-                <Button Color="Color.Success">Buy</Button>
-            </Row>
-        </Container>
-    </CardBody>
-</Card>
+                </Row>
+                <Row>
+                    <Button Color="Color.Danger">Sell</Button>
+                    <Button @onclick="() => BuyStock(companyData.symbol) " Color="Color.Success">Buy</Button>
+                </Row>
+            </Container>
+        </CardBody>
+    </Card>
 
 
 }
@@ -123,5 +125,13 @@ else
     async Task GetData(string symbol)
     {
         tabl = (await GlobalService.GetCompanyData(symbol)).tableData;
+    }
+
+
+    string mes = "Stonk Bought Successbully!";
+    async Task BuyStock(string symbol)
+    {
+        await GlobalService.BuyStonk(symbol);
+        await JSRuntime.InvokeAsync<bool>("confirm", mes);
     }
 }

@@ -155,7 +155,7 @@ namespace HackItApi.Controllers
             return Ok(b);
         }
 
-        [HttpPost("buyStonk")]
+        [HttpGet("buyStonk")]
         public async Task<IActionResult> BuyStonk(string symbol)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -176,7 +176,7 @@ namespace HackItApi.Controllers
             });
         }
 
-        [HttpPost("sellStonk")]
+        [HttpGet("sellStonk")]
         public async Task<IActionResult> SellStonk(string id)
         {
             var stonk = _context.FavStonks.FirstOrDefault(c => c.Id == id);
